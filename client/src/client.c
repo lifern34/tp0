@@ -20,12 +20,20 @@ int main(void)
 	// Usando el logger creado previamente
 	// Escribi: "Hola! Soy un log"
 
+	if(logger == NULL){
+		abort();
+	}
+
 	log_info(logger, "Hola! Soy un log");
 
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
 	config = iniciar_config();
+
+	if (config == NULL){
+		abort();
+	}
 
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
