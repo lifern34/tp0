@@ -1,6 +1,7 @@
 #include "client.h"
 #include "stdbool.h"
 #include <commons/config.h>
+#include <readline/history.h>
 
 int main(void)
 {
@@ -94,15 +95,17 @@ t_config* iniciar_config(void)
 void leer_consola(t_log* logger)
 {
 	char* leido;
-
 	// La primera te la dejo de yapa
 	leido = readline("> ");
-
+	
 	// El resto, las vamos leyendo y logueando hasta recibir un string vacío
-
+	while(strcmp(leido,"") != 0){
+		log_info(logger,leido);
+		leido = readline("> ");
+	}
 
 	// ¡No te olvides de liberar las lineas antes de regresar!
-
+	free(leido);
 }
 
 void paquete(int conexion)
