@@ -22,11 +22,11 @@ int iniciar_servidor(void)
 							servinfo->ai_protocol);
 
 	// Asociamos el socket a un puerto
-	err = setsockopt(fd_escucha, SOL_SOCKET, SO_REUSEPORT, &(int){1}, sizeof(int));
-	err = bind(fd_escucha, servinfo->ai_addr, servinfo->ai_addrlen);
+	err = setsockopt(socket_servidor, SOL_SOCKET, SO_REUSEPORT, &(int){1}, sizeof(int));
+	err = bind(socket_servidor, servinfo->ai_addr, servinfo->ai_addrlen);
 
 	// Escuchamos las conexiones entrantes
-	err = listen(fd_escucha, SOMAXCONN);
+	err = listen(socket_servidor, SOMAXCONN);
 
 	freeaddrinfo(servinfo);
 	log_trace(logger, "Listo para escuchar a mi cliente");
